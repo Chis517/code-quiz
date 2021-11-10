@@ -28,34 +28,35 @@ var quiz = [
 
 startButton();
 
+var highScore = document.getElementById("high-score")
+var highScoreButton = document.createElement("h3")
+  highScoreButton.className = "highscore-button"
+  highScoreButton.setAttribute("id", "highscore-button")
+  highScoreButton.textContent = "View High Scores"
+  highScore.append(highScoreButton)
+  highScoreButton.addEventListener("click", function () {
+    window.location.href = "highscore.html"
+  });
+var timer = document.getElementById("timer")
+var timerEl = document.createElement("h4")
+  timerEl.setAttribute("id", "timer-el")
+  document.getElementById("timer").innerHTML = "60 seconds left";
+  timer.append(timerEl)
+
 function startButton() {
   var question = document.getElementById("question")
   question.style.display = "none"
-  var startButton = document.createElement("h2")
-  startButton.setAttribute("id", "start-button")
-  startButton.textContent = "Start Quiz"
-  document.body.append(startButton)
+  var startButton = document.getElementById("start-button")
   startButton.addEventListener("click", startQuiz)
 
   function startQuiz() {
     startButton.style.display = "none"
     question.style.display = "block"
-    var highScore = document.getElementById("high-score")
-    var timer = document.getElementById("timer")
     var optionList = document.getElementById("option-list")
-    var header = document.getElementById("header")
-    header.style.display = "none"
+    var title = document.getElementById("title")
+    title.style.display = "none"
     var text = document.getElementById("text")
     text.style.display = "none"
-
-    var highScoreButton = document.createElement("h3")
-    highScoreButton.className = "highscore-button"
-    highScoreButton.setAttribute("id", "highscore-button")
-    highScoreButton.textContent = "View High Scores"
-    highScore.append(highScoreButton)
-    highScoreButton.addEventListener("click", function () {
-      window.location.href = "highscore.html"
-    });
 
     var time = 60
 
@@ -81,6 +82,7 @@ function startButton() {
     renderQuestion();
 
     function renderQuestion() {
+      questionsEl.className = "question"
       questionsEl.textContent = quiz[questionIndex].question
       question.prepend(questionsEl)
       for (var i = 0; i < quiz[questionIndex].choices.length; i++) {
@@ -110,6 +112,7 @@ function startButton() {
         var main = document.querySelector('#main')
         main.textContent = ""
         var finish = document.createElement("h2")
+        finish.document.className("done")
         finish.textContent =  "All done! Please type your initials below to continue and view your high score!"
 
         var initialContainer = document.createElement("input")
