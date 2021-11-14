@@ -1,3 +1,4 @@
+// Quiz question and answer object variable
 var quiz = [
   {
     question: "Commonly used data types DO NOT Include:",
@@ -28,8 +29,9 @@ var quiz = [
 
 startButton();
 
-var highScore = document.getElementById("high-score")
-var highScoreButton = document.createElement("h3")
+  // highScore element and clickable link to highscore html
+  var highScore = document.getElementById("high-score")
+  var highScoreButton = document.createElement("h3")
   highScoreButton.className = "highscore-button"
   highScoreButton.setAttribute("id", "highscore-button")
   highScoreButton.textContent = "View High Scores"
@@ -37,18 +39,22 @@ var highScoreButton = document.createElement("h3")
   highScoreButton.addEventListener("click", function () {
     window.location.href = "highscore.html"
   });
-var timer = document.getElementById("timer")
-var timerEl = document.createElement("h4")
+
+  // timer element
+  var timer = document.getElementById("timer")
+  var timerEl = document.createElement("h4")
   timerEl.setAttribute("id", "timer-el")
   document.getElementById("timer").innerHTML = "60 seconds left";
   timer.append(timerEl)
 
-function startButton() {
+  // Hides questions and choices until startQuiz function is called via click
+  function startButton() {
   var question = document.getElementById("question")
   question.style.display = "none"
   var startButton = document.getElementById("start-button")
   startButton.addEventListener("click", startQuiz)
-
+  
+  // Hides display of title, directions and start button and displays the questions and choices
   function startQuiz() {
     startButton.style.display = "none"
     question.style.display = "block"
@@ -58,11 +64,14 @@ function startButton() {
     var text = document.getElementById("text")
     text.style.display = "none"
 
+    var questionIndex = 0
+    var questionsEl = document.createElement('h1')
     var time = 60
 
+    // function to start the timer when startQuiz function is called
     function startTimer() {
       var quizTimer = setInterval(function () {
-        if (time <= 0 || questionIndex === quiz.length - 1) {
+        if (time === 0 || questionIndex === quiz.length - 1) {
           clearInterval(quizTimer);
           document.getElementById("timer").textContent = "DONE";
         } else {
@@ -72,15 +81,13 @@ function startButton() {
           timer.append(timerEl)
         }
         time -= 1;
+        console.log(time);
       }, 1000);
     };
 
-    var currentScore = 0
-    var questionIndex = 0
-    var questionsEl = document.createElement('h1')
-
     renderQuestion();
 
+    // function to display each question through a for loop 
     function renderQuestion() {
       questionsEl.className = "question"
       questionsEl.textContent = quiz[questionIndex].question
@@ -94,31 +101,38 @@ function startButton() {
       }
     };
 
+    var currentScore = 0
+    
+    // listens for choice click, logs whether the choice was correct and adds 20 to currentScore or if incorrect, user gets a timer penalty, then calls the nextQuestion function
     optionList.addEventListener('click', function (e) {
-      if (e.target.id === quiz[questionIndex].answer) {
-        console.log("correct")
-        currentScore += 20
+      if (e.target.innerText === quiz[questionIndex].answer) {
+        currentScore += 20;
+        console.log('correct')
       } else {
         console.log('incorrect')
-        time -= 10
+        time -= 9
       }
-      console.log(currentScore)
+      console.log('score ' + currentScore)
       nextQuestion();
     });
 
+    // function to change questions and choices after user clicks their choice.
     function nextQuestion() {
+      // after the 5th question, the page displays an input and submit button element to store the users score locally
       if (questionIndex === quiz.length - 1) {
         console.log('done')
         var main = document.querySelector('#main')
         main.textContent = ""
         var finish = document.createElement("h2")
-        finish.document.className("done")
-        finish.textContent =  "All done! Please type your initials below to continue and view your high score!"
+        finish.className = "done"
+        finish.textContent = "All done! Please type your initials below to continue and view your high score!"
 
         var initialContainer = document.createElement("input")
+        initialContainer.className = "initialInput"
         initialContainer.setAttribute("placeholder", "Enter initials here")
 
         var submitBtn = document.createElement("button")
+        submitBtn.className = "submitBtn"
         submitBtn.textContent = "Submit"
 
         main.prepend(initialContainer)
@@ -131,7 +145,7 @@ function startButton() {
             storage = []
           }
           var userInfo = {
-            name: nameContainer.value,
+            name: initialContainer.value,
             score: currentScore
           }
           storage.push(userInfo)
@@ -150,10 +164,4 @@ function startButton() {
     startTimer();
 
   };
-};
-
-// rendering each question and choices. it is checking if an answer is correct
-
-// to do -
-// stop rendeing questions if index is greater than 4. add to highscore var to keep track of score. add score to local storage and get data onto highscores page
-
+  };

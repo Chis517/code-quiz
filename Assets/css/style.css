@@ -6,7 +6,7 @@
 :root {
   --primary: white;
   --secondary: darkblue;
-  --tertiary: lightgrey;
+  --tertiary: lightblue;
   --black: black;
 }
 
@@ -26,6 +26,11 @@ body {
   float: left;
   margin-left: 18px;
   cursor: pointer;
+  transition: all 0.3s linear;
+}
+
+.highscore-button:hover {
+  color:  #005C99;
 }
 
 main {
@@ -44,6 +49,7 @@ main {
 
 #text {
   color: var(--black);
+  font-size: 20px;
   text-align: center;
   flex-wrap: wrap;
 }
@@ -53,54 +59,104 @@ main {
   display: block;
   border: 0;
   font-size: 16px;
+  margin-top: 30px;
   padding: 10px 30px;
   border-radius: 30px;
   background: var(--secondary);
   color: var(--primary);
   cursor: pointer;
+  transition: all 0.3s linear;
 }
 
-.quiz-content {
-  margin: 0;
+#start-button:hover {
+  background: #005C99;
 }
 
-.container {
+.quiz-container {
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: left;
+  flex-direction: column;
 }
 
 .question {
   color: var(--black);
-  font-size: 36px;
-  text-align: center;
+  font-size: 30px;
+  text-align: left;
   margin-top: 100px;
 }
 
 .option-list {
-  padding-top: 10px;
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+  padding-left: 0;
 }
 
 .option-list li {
   margin-top: 5px;
-}
-
-.options {
   outline: none;
   display: block;
   border: 0;
   font-size: 16px;
   line-height: 1;
-  padding: 10px 30px;
+  padding: 10px 20px;
   border-radius: 20px;
+  width: fit-content;
   background: var(--secondary);
   color: var(--primary);
   cursor: pointer;
+  transition: all 0.3s linear;
+}
+
+.option-list li:hover {
+  background: #005C99;
 }
 
 .done {
   color: var(--black);
-  font-size: 36px;
+  font-size: 30px;
   text-align: center;
   margin-top: 100px;
+  flex-wrap: wrap;
+}
+
+.initialInput {
+  margin-top: 10px;
+  outline: none;
+  padding: 12px;
+  width: fit-content;
+  font-size: 30px;
+  border: 2px solid var(--secondary);
+}
+
+.submitBtn {
+  outline: none;
+  display: block;
+  border: 0;
+  font-size: 16px;
+  margin-top: 30px;
+  padding: 10px 30px;
+  border-radius: 30px;
+  background: var(--secondary);
+  color: var(--primary);
+  cursor: pointer;
+  transition: all 0.3s linear;
+}
+
+.submitBtn:hover {
+  background: #005C99;
+}
+
+#highScoreList {
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+  padding-left: 0;
+  list-style-image: var;
+}
+
+.userScore {
+  background: var(--tertiary);
+  margin-top: 5px;
+  padding: 10px 10px;
 }
