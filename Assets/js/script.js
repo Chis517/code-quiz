@@ -45,14 +45,14 @@ startButton();
   var timerEl = document.createElement("h4")
   timerEl.setAttribute("id", "timer-el")
   document.getElementById("timer").innerHTML = "60 seconds left";
-  timer.append(timerEl)
+  timer.append(timerEl);
 
   // Hides questions and choices until startQuiz function is called via click
   function startButton() {
   var question = document.getElementById("question")
   question.style.display = "none"
   var startButton = document.getElementById("start-button")
-  startButton.addEventListener("click", startQuiz)
+  startButton.addEventListener("click", startQuiz);
   
   // Hides display of title, directions and start button and displays the questions and choices
   function startQuiz() {
@@ -62,7 +62,7 @@ startButton();
     var title = document.getElementById("title")
     title.style.display = "none"
     var text = document.getElementById("text")
-    text.style.display = "none"
+    text.style.display = "none";
 
     var questionIndex = 0
     var questionsEl = document.createElement('h1')
@@ -101,7 +101,7 @@ startButton();
       }
     };
 
-    var currentScore = 0
+    var currentScore = 0;
     
     // listens for choice click, logs whether the choice was correct and adds 20 to currentScore or if incorrect, user gets a timer penalty, then calls the nextQuestion function
     optionList.addEventListener('click', function (e) {
@@ -122,18 +122,18 @@ startButton();
       if (questionIndex === quiz.length - 1) {
         console.log('done')
         var main = document.querySelector('#main')
-        main.textContent = ""
+        main.textContent = "";
         var finish = document.createElement("h2")
         finish.className = "done"
-        finish.textContent = "All done! Please type your initials below to continue and view your high score!"
+        finish.textContent = "All done! Please type your initials below to continue and view your high score!";
 
         var initialContainer = document.createElement("input")
         initialContainer.className = "initialInput"
-        initialContainer.setAttribute("placeholder", "Enter initials here")
+        initialContainer.setAttribute("placeholder", "Enter initials here");
 
         var submitBtn = document.createElement("button")
         submitBtn.className = "submitBtn"
-        submitBtn.textContent = "Submit"
+        submitBtn.textContent = "Submit";
 
         main.prepend(initialContainer)
         main.prepend(finish)
